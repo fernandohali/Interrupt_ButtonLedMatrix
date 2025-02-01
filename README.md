@@ -30,10 +30,10 @@ O projeto deve ser organizado da seguinte forma:<br>
 /projeto<br>
 │<br>
 ├── /src<br>
-│ ├── Interrupt_ButtonLedMatrix.c # Código principal do projeto<br>
-│ ├── interrupts.c # Rotinas de interrupção<br>
-│ ├── debouncing.c # Implementação do debouncing<br>
-│ └── ws2812.pio # Controle dos LEDs WS2812<br>
+│     ├── Interrupt_ButtonLedMatrix.c # Código principal do projeto<br>
+│     ├── interrupts.c # Rotinas de interrupção<br>
+│     ├── debouncing.c # Implementação do debouncing<br>
+│     └── ws2812.pio # Controle dos LEDs WS2812<br>
 ...
 
 
