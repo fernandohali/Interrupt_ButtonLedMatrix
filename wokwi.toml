@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/Interrupt_ButtonLedMatrix.uf2'
+elf = 'build/Interrupt_ButtonLedMatrix.elf'

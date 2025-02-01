@@ -19,7 +19,7 @@ set(sdkVersion 2.1.0)
 set(toolchainVersion 13_3_Rel1)
 set(picotoolVersion 2.1.0)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
-if (EXISTS ${picoVscode})
+if(EXISTS ${picoVscode})
     include(${picoVscode})
 endif()
 # ====================================================================================
@@ -35,7 +35,8 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Interrupt_ButtonLedMatrix Interrupt_ButtonLedMatrix.c )
+add_executable(Interrupt_ButtonLedMatrix
+    src/Interrupt_ButtonLedMatrix.c)
 
 pico_set_program_name(Interrupt_ButtonLedMatrix "Interrupt_ButtonLedMatrix")
 pico_set_program_version(Interrupt_ButtonLedMatrix "0.1")
@@ -44,19 +45,24 @@ pico_set_program_version(Interrupt_ButtonLedMatrix "0.1")
 pico_enable_stdio_uart(Interrupt_ButtonLedMatrix 0)
 pico_enable_stdio_usb(Interrupt_ButtonLedMatrix 0)
 
+pico_generate_pio_header(Interrupt_ButtonLedMatrix ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
+
 # Add the standard library to the build
 target_link_libraries(Interrupt_ButtonLedMatrix
-        pico_stdlib)
+    pico_stdlib
+    hardware_pwm
+    hardware_pio
+)
 
 # Add the standard include files to the build
 target_include_directories(Interrupt_ButtonLedMatrix PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}
 )
 
 # Add any user requested libraries
-target_link_libraries(Interrupt_ButtonLedMatrix 
-        
-        )
+target_link_libraries(Interrupt_ButtonLedMatrix
+
+)
 
 pico_add_extra_outputs(Interrupt_ButtonLedMatrix)
 
