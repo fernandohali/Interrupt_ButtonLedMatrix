@@ -26,9 +26,9 @@ Este projeto tem como objetivo consolidar o entendimento sobre o uso de interrup
 
 ## Estrutura do Projeto
 
-O projeto deve ser organizado da seguinte forma:
-/projeto
-│
+O projeto deve ser organizado da seguinte forma:<br>
+/projeto<br>
+│<br>
 ├── /src<br>
 │ ├── Interrupt_ButtonLedMatrix.c # Código principal do projeto<br>
 │ ├── interrupts.c # Rotinas de interrupção<br>
