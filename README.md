@@ -29,11 +29,11 @@ Este projeto tem como objetivo consolidar o entendimento sobre o uso de interrup
 O projeto deve ser organizado da seguinte forma:
 /projeto
 │
-├── /src
-│ ├── Interrupt_ButtonLedMatrix.c # Código principal do projeto
-│ ├── interrupts.c # Rotinas de interrupção
-│ ├── debouncing.c # Implementação do debouncing
-│ └── ws2812.pio # Controle dos LEDs WS2812
+├── /src<br>
+│ ├── Interrupt_ButtonLedMatrix.c # Código principal do projeto<br>
+│ ├── interrupts.c # Rotinas de interrupção<br>
+│ ├── debouncing.c # Implementação do debouncing<br>
+│ └── ws2812.pio # Controle dos LEDs WS2812<br>
 ...
 
 
