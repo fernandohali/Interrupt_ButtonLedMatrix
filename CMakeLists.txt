@@ -36,16 +36,20 @@ pico_sdk_init()
 # Add executable. Default name is the project name, version 0.1
 
 add_executable(Interrupt_ButtonLedMatrix
-    src/Interrupt_ButtonLedMatrix.c)
+    src/Interrupt_ButtonLedMatrix.c
+    src/led/led.c
+    src/buttons/buttons.c
+    src/matriz_Numeros/matriz_Numeros.c
+)
 
 pico_set_program_name(Interrupt_ButtonLedMatrix "Interrupt_ButtonLedMatrix")
 pico_set_program_version(Interrupt_ButtonLedMatrix "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(Interrupt_ButtonLedMatrix 0)
+pico_enable_stdio_uart(Interrupt_ButtonLedMatrix 1)
 pico_enable_stdio_usb(Interrupt_ButtonLedMatrix 0)
 
-pico_generate_pio_header(Interrupt_ButtonLedMatrix ${CMAKE_CURRENT_LIST_DIR}/ws2818b.pio)
+pico_generate_pio_header(Interrupt_ButtonLedMatrix ${CMAKE_CURRENT_LIST_DIR}/ws2812.pio)
 
 # Add the standard library to the build
 target_link_libraries(Interrupt_ButtonLedMatrix
