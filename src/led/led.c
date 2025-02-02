@@ -2,8 +2,8 @@
 #include "pico/stdlib.h"
 #include <stdio.h>
 
-/* Tempo de piscar: O tempo de piscar foi ajustado para 100 ms 
-para cada estado (ligado e desligado), totalizando 200 ms por 
+/* Tempo de piscar: O tempo de piscar foi ajustado para 100 ms
+para cada estado (ligado e desligado), totalizando 200 ms por
 ciclo completo. Isso resulta em 5 ciclos por segundo (1000 ms / 200 ms = 5). */
 
 #define TEMPO 100 // 100 ms para cada metade do ciclo (ligar/desligar)
