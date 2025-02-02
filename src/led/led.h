@@ -8,6 +8,6 @@
 #define LED_BLUE_PIN 12
 
 void init_led(void);
-void set_led_color(bool red, bool green, bool blue);
+void set_led_color();
 
 #endif
