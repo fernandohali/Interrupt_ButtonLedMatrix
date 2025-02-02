@@ -1,7 +1,6 @@
 #include "buttons.h"
 #include "pico/stdlib.h"
 #include <stdio.h>
-#include "../matriz_Numeros/matriz_Numeros.h"
 
 // Definição de variáveis globais
 static volatile uint32_t last_time = 0;
@@ -19,23 +18,23 @@ void gpio_irq_handler(uint gpio, uint32_t events)
 
         if (gpio == BUTTON_A)
         {
-            if (indice < 9) // Evita ultrapassar 9
+            if (indice < 9) // Garante que não ultrapasse 9
             {
-                printf("Mudanca de Estado do Led. A = %d\n", indice);
                 indice++;
             }
         }
         else if (gpio == BUTTON_B)
         {
-            if (indice > 0) // Evita valores negativos
+            if (indice > 0) // Garante que não fique negativo
             {
-                printf("Mudanca de Estado do Led. A = %d\n", indice);
                 indice--;
             }
         }
 
-        /*   // Atualiza o número exibido na matriz de LEDs
-          npSetPattern(indice); */
+        npSetPattern(indice);
+        // Atualiza o número exibido na matriz de LEDs
+        npSetPattern(indice);
+        printf("Mudança de Estado do Led. A = %d\n", indice);
     }
 }
 

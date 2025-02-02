@@ -2,10 +2,10 @@
 #define _BUTTONS_H
 
 #include <stdio.h>
+#include "../matriz_Numeros/matriz_Numeros.h"
 
-// Definição dos pinos dos botões
-#define BUTTON_A 5
-#define BUTTON_B 6
+#define BUTTON_A 5 // Pino do botão A
+#define BUTTON_B 6 // Pino do botão B
 
 void init_buttons();
 
