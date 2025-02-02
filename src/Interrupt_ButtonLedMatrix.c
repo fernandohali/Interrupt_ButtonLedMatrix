@@ -5,26 +5,30 @@
 #include "hardware/clocks.h"
 #include "ws2812.pio.h"
 
+// Chamando as funções organizadas em pastas
+#include "led/led.h"
+#include "buttons/buttons.h"
+#include "matriz_Numeros/matriz_Numeros.h"
 
-// Definição do número de LEDs e pino.
-#define LED_COUNT 25   
-#define LED_PIN 7
-
-//Definição dos Botões e RGB
-#define BUTTON_A 5  // Pino do botão A
-#define BUTTON_B 6  // Pino do botão B
-#define LED_VERDE 11    // Pino do LED Verde
-#define LED_AZUL 12    // Pino do LED Azul
-#define LED_VERMELHO 13    // Pino do LED Vermelho
-
-
+PIO pio = pio0; // Definição global para evitar reinicialização contínua
+int sm = 0;
+uint offset;
 
 int main()
 {
     stdio_init_all();
 
-    while (true) {
-        printf("Hello, world!\n");
-        sleep_ms(1000);
+    // Inicializa os LEDs e os botões
+    init_led();
+    init_buttons();
+
+    // Inicializa a comunicação WS2812 apenas uma vez
+    uint offset = pio_add_program(pio, &ws2812_program);
+    ws2812_program_init(pio, sm, offset, WS2812_PIN, 800000, IS_RGBW);
+
+    while (true)
+    {
+        set_led_color();
+        sleep_ms(100); // Pequeno delay para evitar consumo excessivo de CPU
     }
 }
