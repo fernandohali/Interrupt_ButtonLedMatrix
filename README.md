@@ -10,6 +10,10 @@ Este projeto tem como objetivo consolidar o entendimento sobre o uso de interrup
 - Fixar o estudo do uso de resistores de pull-up internos em botões de acionamento.
 - Desenvolver um projeto funcional que combine hardware e software.
 
+## Vídeo
+
+- https://www.dropbox.com/scl/fi/h7fuktkaf1lidz8pf6t78/Unidade-4-Capitulo-4.mp4?rlkey=vbqjtnswtbmz9ilqrbsmal8im&st=7wrs3f8p&dl=0
+
 ## Componentes Utilizados
 
 - **Matriz 5x5 de LEDs WS2812** conectada à GPIO 7.
