@@ -3,25 +3,26 @@
 #include <stdio.h>
 
 // Definição de variáveis globais
-static volatile uint32_t last_time = 0;
-static volatile int indice = 0; // Inicializa com 0
+static volatile uint32_t last_time = 0; // Armazena o tempo do último evento
+static volatile int indice = 0;         // Índice para controlar o número exibido
 
-void init_buttons();
-void gpio_irq_handler(uint gpio, uint32_t events);
-
+void init_buttons();                               // Declaração da função de inicialização dos botões
+void gpio_irq_handler(uint gpio, uint32_t events); // Declaração da função de interrupção
 
 // Inicializa os botões com interrupções
 void init_buttons()
 {
+    // Configura os pinos dos botões como entrada
     gpio_init(BUTTON_A);
     gpio_init(BUTTON_B);
 
-    gpio_set_dir(BUTTON_A, GPIO_IN);
-    gpio_set_dir(BUTTON_B, GPIO_IN);
+    gpio_set_dir(BUTTON_A, GPIO_IN); // Define o pino do botão A como entrada
+    gpio_set_dir(BUTTON_B, GPIO_IN); // Define o pino do botão B como entrada
 
-    gpio_pull_up(BUTTON_A);
-    gpio_pull_up(BUTTON_B);
+    gpio_pull_up(BUTTON_A); // Habilita o resistor de pull-up no botão A
+    gpio_pull_up(BUTTON_B); // Habilita o resistor de pull-up no botão B
 
+    // Configura interrupções para os botões
     gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
     gpio_set_irq_enabled_with_callback(BUTTON_B, GPIO_IRQ_EDGE_FALL, true, &gpio_irq_handler);
 }
@@ -29,30 +30,31 @@ void init_buttons()
 // Função de interrupção com debounce
 void gpio_irq_handler(uint gpio, uint32_t events)
 {
-    uint32_t current_time = to_us_since_boot(get_absolute_time());
+    uint32_t current_time = to_us_since_boot(get_absolute_time()); // Obtém o tempo atual
 
     // Debounce - Evita múltiplos acionamentos em curto período de tempo
-    if (current_time - last_time > 200000) // 200 ms
+    
+    if (current_time - last_time > 200000) // Verifica se passaram 200 ms desde o último evento
     {
         last_time = current_time; // Atualiza o tempo do último evento
 
-        if (gpio == BUTTON_A)
+        if (gpio == BUTTON_A) // Verifica se o botão A foi pressionado
         {
-            if (indice < 9) // Garante que não ultrapasse 9
+            if (indice < 9) // Garante que o índice não ultrapasse 9
             {
-                indice++;
+                indice++; // Incrementa o índice
             }
         }
-        else if (gpio == BUTTON_B)
+        else if (gpio == BUTTON_B) // Verifica se o botão B foi pressionado
         {
-            if (indice > 0) // Garante que não fique negativo
+            if (indice > 0) // Garante que o índice não fique negativo
             {
-                indice--;
+                indice--; // Decrementa o índice
             }
         }
 
         // Atualiza o número exibido na matriz de LEDs
         npSetPattern(indice);
-        printf("Mudança de Estado do Led. A = %d\n", indice);
+        printf("Mudança de Estado do Led. A = %d\n", indice); // Exibe o índice no console
     }
 }
